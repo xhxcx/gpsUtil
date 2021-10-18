@@ -22,15 +22,25 @@ public class GpsUtilController {
     @Autowired
     private GpsUtilService gpsUtilService;
 
+    /**
+     * Endpoint to retrieve all attractions
+     * @return ResponseEntity with List of Attraction as response content
+     */
     @RequestMapping("/getAttraction")
     public ResponseEntity<List<Attraction>> getAttractions() {
-        LOGGER.info("Call getAttractions");
+        LOGGER.info("GET /getAttractions");
         return new ResponseEntity<>(gpsUtilService.getAttractions(), HttpStatus.OK);
     }
 
+    /**
+     *
+     * Endpoint to retrieve last known location of the given user
+     * @param userId as string
+     * @return ResponseEntity with VisitedLocation as response content
+     */
     @RequestMapping("/getUserLocation")
     public ResponseEntity<VisitedLocation> getUserLocation (@RequestParam String userId) {
-        LOGGER.info("Call getUserLocation for user id : " + userId);
+        LOGGER.info("GET /getUserLocation userId = " + userId);
         return new ResponseEntity<>(gpsUtilService.getUserLocation(UUID.fromString(userId)), HttpStatus.OK);
     }
 }

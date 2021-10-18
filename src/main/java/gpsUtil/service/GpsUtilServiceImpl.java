@@ -3,7 +3,6 @@ package gpsUtil.service;
 import gpsUtil.GpsUtil;
 import gpsUtil.location.Attraction;
 import gpsUtil.location.VisitedLocation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +11,11 @@ import java.util.UUID;
 @Service
 public class GpsUtilServiceImpl implements GpsUtilService{
 
-    @Autowired
-    private GpsUtil gpsUtil;
+    private final GpsUtil gpsUtil;
+
+    public GpsUtilServiceImpl(GpsUtil gpsUtil) {
+        this.gpsUtil = gpsUtil;
+    }
 
     @Override
     public List<Attraction> getAttractions() {
